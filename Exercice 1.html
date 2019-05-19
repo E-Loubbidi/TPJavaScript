@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercice 1</title>
+    <script>
+    
+        function dessiner()
+        {
+            var rows=document.querySelector('#rows').value;
+            var cols=document.querySelector('#cols').value;
+            
+            var ecran=document.querySelector('#ecran');
+            ecran.innerHTML=makeTable(rows, cols);
+        }
+        var color='black';
+
+        function makeTable(rows, cols)
+        {
+
+            var table='<table border=\'1\'>';
+            for(var i=0;i<rows;i++)
+            {
+                table+='<tr>';
+                for(var j=0;j<cols;j++)
+                {
+                    table+='<td onmouseover=\'colorer(this,event)\'></td>';
+                }
+                table+='</tr>';
+            }
+            table+='</table>';
+            return table;
+        }
+
+        function colorer(td, event)
+        {
+            td.style.backgroundColor=color;
+            console.log(event);
+        }
+
+    </script>
+
+    <style>
+    
+        input
+        {
+            text-align: right;
+        }
+
+        #ecran td
+        {
+            width : 10px;
+            height : 10px;
+        }
+
+        #palette td
+        {
+            width : 30px;
+            height : 30px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    Rows : <input type="text" id="rows" value="10"> <br>
+    Cols : <input type="text" id="cols" value="10"> <br>
+    <button onclick='dessiner()'>Dessiner</button>
+    <div id="ecran"></div>
+    <div id="palette">
+        <table>
+            <tr>
+                <td style="background : red" onclick="color='red'"></td>
+                <td style="background : yellow" onclick="color='yellow'"></td>
+                <td style="background : orange" onclick="color='orange'"></td>
+                <td style="background : green" onclick="color='green'"></td>
+                <td style="background : blue" onclick="color='blue'"></td>
+                <td style="background : cyan" onclick="color='cyan'"></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

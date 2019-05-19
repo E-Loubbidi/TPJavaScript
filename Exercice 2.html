@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exemple 1</title>
+    <script>
+    
+        function afficher()
+        {
+            var rows=document.querySelector('#rows').value;
+            var cols=document.querySelector('#cols').value;
+            var affichage=document.querySelector('#affichage');
+            affichage.innerHTML=makeTable(rows,cols);
+        }
+
+        function makeTable(rows, cols)
+        {
+            var table='<table>';
+            for(var i=0;i<rows;i++)
+            {
+                table+='<tr>'; 
+                for(var j=0;j<cols;j++)
+                {
+                    table+='<td onmouseover=\'colorer(this)\'>' + '</td>';
+                }
+                table+='</tr>'; 
+            }
+            table+='</table>';
+            return table;
+        }
+
+        function colorer(td)
+        {
+            td.style.backgroundColor=getRandomColor();
+        }
+
+        function getRandomColor() {
+        var r = parseInt(Math.random()*255);
+        var g = parseInt(Math.random()*255);
+        var b = parseInt(Math.random()*255);
+        return 'rgb(' + r + ',' + g + ',' + b + ')'
+    }
+
+    </script>
+
+    <style>
+    
+        input
+        {
+            text-align: right;
+        }
+
+        div table
+        {
+            border : 1px dashed;
+        }
+
+        div td
+        {
+            width : 10px;
+            height : 10px;
+            border : 0px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    Rows : <input type="text" id="rows" value="10"><br>
+    Cols : <input type="text" id="cols" value="10"><br>
+    <input type="button" value="Afficher" onclick="afficher()">
+    <div id="affichage"></div>
+
+</body>
+</html>
