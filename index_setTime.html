@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document JavaScript</title>
+</head>
+<body>
+
+   <!--<script src="users.js"></script>--> 
+   
+   <div class = "box" style="height: 20px; background-color: black"></div>
+
+    <h1 class="out"></h1>
+
+
+    <script>
+
+        //const names = users.map(user => user.name)  //il transforme un tableau a aun autre selon ce qu'on veut
+        //const numbers = new Array [1000]
+        //.fill(0);
+        //map( _ => Math.random()*100);
+
+        let test = true;
+        let start = 0, nbre = 0;
+        const box = document.querySelector('div.box');
+        box.style.width = "100%";
+        console.log(box.style.width);
+
+        function resize(ts){
+            if(start === 0) start = ts;
+            console.log('Durée', (ts - start)/1000);
+            console.log(ts);
+            setTimeout( () => {
+
+                let width = parseInt(box.style.width);
+                box.style.width = (width - 1) + '%'
+                if(width < 10) test = false
+            if(test) requestAnimationFrame(resize); //resize();
+            else console.log('Count', nbre/duration);
+            },200);
+        }
+
+        resize(0);
+
+
+        let startstop = true;
+        const out  =document.querySelector('h1.out');
+        function count()
+        {
+            const tid = setTimeout( () => {
+                const d= new Date();
+                out.innerText = d.getSeconds();
+                count();
+            if(startstop) count();
+            },1000);
+            
+        }
+        count();
+
+       
+         setTimeout(() => {
+
+            console.log("A l'interieur de setTimeout")
+
+        },100);
+        console.log("End");
+    
+        Array.prototype.each = function(cb= _ => undefined){    //A l'interieur il accede a this -> elle va faire une boucle -> a chaqque element du tableau elle va appeler la fonction cb
+            //cb(this);
+            for(let i=0; i<this.length; i++){
+                cb(this[i], i, this);
+            }
+
+        }
+       
+          // Cei est equivalent a function (){}
+
+        //pas de parametre => ()
+        //un seul parametre => si on l'utilise => un caratere
+                        //  => si non => underscore _
+
+        //Array.prototype.fill =            Une fonction qui admet un parametre ne retourne rien
+        //value => {
+          //for(i=0;i<this.length;i++)
+          //    this[i] = value;
+          //    return this;  
+        //}
+
+        //map
+
+        var ids = [2, 4, 5, 8];
+
+        ids.each( (e,i,t) => console.log('in callback', e, i, t));
+
+    </script>
+
+</body>
+</html>
